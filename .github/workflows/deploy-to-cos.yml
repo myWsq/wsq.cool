@@ -21,12 +21,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Minio Deploy
-        uses: hkdobrev/minio-deploy-action@v1
+     - name: Deploy
+        uses: TencentCloud/cos-action@v1
         with:
-          endpoint: ${{ secrets.MINIO_ENDPOINT }}
-          access_key: ${{ secrets.MINIO_ACCESS_KEY }}
-          secret_key: ${{ secrets.MINIO_SECRET_KEY }}
-          bucket: 'wsq.cool'
-          source_dir: 'out'
-          target_dir: '/'
+          secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+          cos_bucket: ${{ secrets.COS_BUCKET }}
+          cos_region: ${{ secrets.COS_REGION }}
+          local_path: out
+          remote_path: /
+          clean: true
