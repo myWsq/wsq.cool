@@ -8,19 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
+      - uses: actions/setup-node@v2
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          node-version: "16"
 
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6.19.1
-          run_install: true
+      - name: Install
+        run: npm install
 
       - name: Lint
         run: npm run lint
