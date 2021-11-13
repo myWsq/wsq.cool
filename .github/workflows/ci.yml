@@ -22,8 +22,8 @@ jobs:
           version: 6.19.1
           run_install: true
 
-      # - name: Lint
-      #   run: npm run lint
+      - name: Lint
+        run: npm run lint
 
       - name: Build
         run: npm run build
